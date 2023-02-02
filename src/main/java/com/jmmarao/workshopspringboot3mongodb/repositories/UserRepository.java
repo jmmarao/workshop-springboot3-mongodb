@@ -1,6 +1,6 @@
 package com.jmmarao.workshopspringboot3mongodb.repositories;
 
-import com.jmmarao.workshopspringboot3mongodb.entities.User;
+import com.jmmarao.workshopspringboot3mongodb.model.entities.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,6 +1,7 @@
 package com.jmmarao.workshopspringboot3mongodb.controllers;
 
-import com.jmmarao.workshopspringboot3mongodb.entities.User;
+import com.jmmarao.workshopspringboot3mongodb.model.dtos.UserDTO;
+import com.jmmarao.workshopspringboot3mongodb.model.entities.User;
 import com.jmmarao.workshopspringboot3mongodb.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/users")
@@ -17,7 +19,9 @@ public class UserController {
     private UserService userService;
 
     @GetMapping
-    public ResponseEntity<List<User>> findUsersController() {
-        return ResponseEntity.ok().body(userService.findUsers());
+    public ResponseEntity<List<UserDTO>> findUsersController() {
+        List<User> usersEntity = userService.findUsers();
+        List<UserDTO> usersDTO = usersEntity.stream().map(user -> new UserDTO(user)).collect(Collectors.toList());
+        return ResponseEntity.ok().body(usersDTO);
     }
 }

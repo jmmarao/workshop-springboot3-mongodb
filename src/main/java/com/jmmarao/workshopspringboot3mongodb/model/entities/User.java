@@ -1,4 +1,4 @@
-package com.jmmarao.workshopspringboot3mongodb.entities;
+package com.jmmarao.workshopspringboot3mongodb.model.entities;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
