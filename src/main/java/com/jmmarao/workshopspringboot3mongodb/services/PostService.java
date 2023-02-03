@@ -13,6 +13,6 @@ public class PostService {
     private PostRepository postRepository;
 
     public List<Post> findPostsByTitle(String text) {
-        return postRepository.findByTitleContainingIgnoreCase(text);
+        return postRepository.findByTitleProcedure(text);
     }
 }
