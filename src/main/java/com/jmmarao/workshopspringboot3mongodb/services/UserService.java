@@ -31,10 +31,26 @@ public class UserService {
     }
 
     public void deleteUser(String id) {
+        isUser(id);
         userRepository.deleteById(id);
+    }
+
+    public User updateUser(User user) {
+        User userToUpdate = userRepository.findById(user.getId());
+        updateUserData(userToUpdate, user);
+        return userRepository.save(userToUpdate);
     }
 
     public User fromDTO(UserDTO userDTO) {
         return new User(userDTO.getId(), userDTO.getName(), userDTO.getEmail());
+    }
+
+    private void isUser(String id) {
+        userRepository.findById(id);
+    }
+
+    private void updateUserData(User userToUpdate, User user) {
+        userToUpdate.setName(user.getName());
+        userToUpdate.setEmail(user.getEmail());
     }
 }
