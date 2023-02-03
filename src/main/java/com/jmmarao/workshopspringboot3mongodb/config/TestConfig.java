@@ -38,5 +38,8 @@ public class TestConfig implements CommandLineRunner {
         Post post2 = new Post(null, simpleDateFormat.parse("25/02/2023"), "Defeat Thanos", "Remember when I defeated Thanos? What happened?", new AuthorDTO(user1));
 
         postRepository.saveAll(Arrays.asList(post1, post2));
+
+        user1.getPosts().addAll(Arrays.asList(post1, post2));
+        userRepository.save(user1);
     }
 }
