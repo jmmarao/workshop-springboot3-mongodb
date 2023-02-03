@@ -1,6 +1,7 @@
 package com.jmmarao.workshopspringboot3mongodb.controllers;
 
 import com.jmmarao.workshopspringboot3mongodb.model.dtos.UserDTO;
+import com.jmmarao.workshopspringboot3mongodb.model.entities.Post;
 import com.jmmarao.workshopspringboot3mongodb.model.entities.User;
 import com.jmmarao.workshopspringboot3mongodb.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,5 +60,11 @@ public class UserController {
         entity.setId(id);
         entity = userService.updateUser(entity);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping(value = "/{id}/posts")
+    public ResponseEntity<List<Post>> findUserPostsController(@PathVariable String id) {
+        User userEntity = userService.findUser(id);
+        return ResponseEntity.ok().body(userEntity.getPosts());
     }
 }
