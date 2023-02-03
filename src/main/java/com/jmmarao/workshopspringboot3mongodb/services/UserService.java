@@ -1,5 +1,6 @@
 package com.jmmarao.workshopspringboot3mongodb.services;
 
+import com.jmmarao.workshopspringboot3mongodb.model.dtos.UserDTO;
 import com.jmmarao.workshopspringboot3mongodb.model.entities.User;
 import com.jmmarao.workshopspringboot3mongodb.repositories.UserRepository;
 import com.jmmarao.workshopspringboot3mongodb.services.exceptions.ResourceNotFound;
@@ -23,5 +24,13 @@ public class UserService {
             throw new ResourceNotFound("[ResourceNotFound] User id " + id + " not found");
         }
         return user;
+    }
+
+    public User insertUser(User user) {
+        return userRepository.insert(user);
+    }
+
+    public User fromDTO(UserDTO userDTO) {
+        return new User(userDTO.getId(), userDTO.getName(), userDTO.getEmail());
     }
 }
